@@ -3,6 +3,8 @@ import { Provider } from "react-redux";
 import ReactDOM from "react-dom";
 import { Router } from "react-router-dom";
 
+import "semantic-ui-css/semantic.min.css";
+
 import configureStore, { history } from "./store/store";
 
 import App from "./App";
