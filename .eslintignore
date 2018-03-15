@@ -1,0 +1,7 @@
+# Avoid linting on these files by ESLint
+
+**/node_modules/**
+**/build/**
+**/dist/**
+**/coverage/**
+**/webpack.config.*js

@@ -1,0 +1,11 @@
+node_modules
+dist
+build
+coverage
+._DS_Store
+lib
+*.key
+*.cert
+*.pfx
+.env
+npm-debug.log*

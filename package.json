@@ -1,0 +1,75 @@
+{
+  "name": "nightlife-app",
+  "version": "1.0.0",
+  "description": "Nightlife coordination App",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "nodemon --watch server --exec babel-node server/index.js",
+    "build": "npm run clean && npm run build:webpack",
+    "build:webpack": "webpack --config webpack.config.js",
+    "clean": "rimraf build",
+    "lint": "eslint client server config"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/3dw1nM0535/nightlife-app.git"
+  },
+  "keywords": [
+    "Find",
+    "Bar",
+    "in",
+    "your",
+    "Area"
+  ],
+  "author": "Edwin Moses",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/3dw1nM0535/nightlife-app/issues"
+  },
+  "homepage": "https://github.com/3dw1nM0535/nightlife-app#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.10",
+    "eslint": "^4.18.2",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-react": "^7.7.0",
+    "file-loader": "^1.1.11",
+    "postcss-flexbugs-fixes": "^3.3.0",
+    "postcss-loader": "^2.1.1",
+    "prettier": "^1.11.1",
+    "react-hot-loader": "^4.0.0",
+    "rimraf": "^2.6.2",
+    "scss-loader": "0.0.1",
+    "style-loader": "^0.20.3",
+    "url-loader": "^1.0.1"
+  },
+  "dependencies": {
+    "autoprefixer": "^8.1.0",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "history": "^4.7.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^4.0.8",
+    "redux": "^3.7.2",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12",
+    "webpack-dev-middleware": "^3.0.1",
+    "webpack-hot-middleware": "^2.21.2"
+  }
+}
