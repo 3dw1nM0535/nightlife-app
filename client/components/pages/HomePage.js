@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Header, Icon, Item, Button, Card } from "semantic-ui-react";
+import { Grid, Header, Icon, Item, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 

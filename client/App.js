@@ -8,11 +8,15 @@ import HomePage from "./components/pages/HomePage";
 
 import TopNavigation from "./components/navigation/TopNavigation";
 import NavBar from "./components/navigation/NavBar";
+import LoginPage from "./components/pages/LoginPage";
+import SignupPage from "./components/pages/SignupPage";
 
 const App = ({ location, isAuthenticated }) => (
   <div className="ui container">
     { isAuthenticated ? <TopNavigation /> : <NavBar /> }
     <GuestRoute location={location} path="/" exact component={HomePage} />
+    <GuestRoute location={location} path="/login" exact component={LoginPage} />
+    <GuestRoute location={location} path="/signup" exact component={SignupPage} />
   </div>
 );
 
