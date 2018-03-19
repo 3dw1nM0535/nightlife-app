@@ -10,4 +10,5 @@ module.exports = {
   PASSPHRASE: process.env.PASSPHRASE,
   MONGO_URI: process.env.MONGO_URI,
   API_KEY: process.env.API_KEY,
+  SECRET_KEY: process.env.SECRET_KEY,
 };
