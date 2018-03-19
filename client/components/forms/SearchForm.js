@@ -47,7 +47,7 @@ class SearchForm extends React.Component {
         <Form size="tiny" onSubmit={this.onSubmit}>
           <Form.Group widths="equal">
             <Form.Input fluid name="location" value={data.location} onChange={this.onChange} placeholder="Enter location to search" error={!!errors.location} />
-            <Button primary size="tiny">Go</Button>
+            <Button primary size="tiny">Search</Button>
           </Form.Group>
           { errors.location && <InlineError text={errors.location} /> }
         </Form>
