@@ -74,6 +74,7 @@
     "redux-thunk": "^2.2.0",
     "semantic-ui-css": "^2.3.0",
     "semantic-ui-react": "^0.78.3",
+    "validator": "^9.4.1",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.12",
     "webpack-dev-middleware": "^3.0.1",
