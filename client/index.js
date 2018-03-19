@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import { Router } from "react-router-dom";
 
 import "semantic-ui-css/semantic.min.css";
+import "./components/styles/styles.css";
 
 import configureStore, { history } from "./store/store";
 
