@@ -24,10 +24,6 @@ const UserSchema = new Schema({
   },
 }, { timestamps: true });
 
-////////////////////////////////////
-//Plugin for our user data schema //
-////////////////////////////////////
-UserSchema.plugin(uniqueValidator, { message: "This email is already taken" });
 
 //////////////////////
 //Set user password //
@@ -63,5 +59,10 @@ UserSchema.methods.toJSON = function toJSON() {
     token: this.generateJWT(),
   };
 };
+
+////////////////////////////////////
+//Plugin for our user data schema //
+////////////////////////////////////
+UserSchema.plugin(uniqueValidator, { message: "This email is already taken" });
 
 export default mongoose.model("User", UserSchema);
