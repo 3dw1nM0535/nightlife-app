@@ -36,6 +36,13 @@ UserSchema.methods.setPassword = function setPassword(password) {
   this.passwordHash = bcrypt.hashSync(password, 10);
 };
 
+////////////////////////////////////
+//Validate user password function //
+////////////////////////////////////
+UserSchema.methods.isValidPassword = function isValidPassword(password) {
+  return bcrypt.compareSync(password, this.passwordHash);
+};
+
 ///////////////////
 //Generate token //
 ///////////////////
