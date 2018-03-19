@@ -23,6 +23,8 @@ import privateEnv from "../config/private_keys";
 //Route modules //
 //////////////////
 import bar from "./routes/bar/bar";
+import user from "./routes/user/user";
+import auth from "./routes/user/auth";
 
 config.plugins.push(new webpack.HotModuleReplacementPlugin());
 
@@ -90,6 +92,8 @@ app.get("*", (req, res) => {
 //Mount routes //
 /////////////////
 app.use("/api/bars", bar);
+app.use("/api/user", user);
+app.use("/api/auth", auth);
 
 ////////////////////////////
 //Init server onver HTTPS //
