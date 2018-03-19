@@ -2,11 +2,13 @@ import React from "react";
 import { Provider } from "react-redux";
 import ReactDOM from "react-dom";
 import { Router } from "react-router-dom";
+import decoder from "jwt-decode";
 
 import "semantic-ui-css/semantic.min.css";
 import "./components/styles/styles.css";
 
 import configureStore, { history } from "./store/store";
+import { userLoggedIn } from "./actions/actionCreators";
 
 import App from "./App";
 
@@ -20,6 +22,16 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root"),
 );
+
+if (localStorage.token) {
+  const payload = decoder(localStorage.token);
+  const user = {
+    email: payload.email,
+    _id: payload._id,
+    token: localStorage.token,
+  };
+  store.dispatch(userLoggedIn(user));
+}
 
 if (module.hot) {
   module.hot.accept("./App", () => {

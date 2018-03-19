@@ -63,6 +63,7 @@
     "gravatar-url": "^2.0.0",
     "history": "^4.7.2",
     "jsonwebtoken": "^8.2.0",
+    "jwt-decode": "^2.2.0",
     "lodash": "^4.17.5",
     "mongoose": "^5.0.10",
     "mongoose-unique-validator": "^2.0.0",
