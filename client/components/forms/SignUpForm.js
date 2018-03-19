@@ -32,7 +32,8 @@ class SignUpForm extends React.Component {
     this.setState({ errors });
     if (Object.keys(errors).length === 0) {
       this.setState({ isLoading: true });
-      this.props.submit(this.state.data);
+      this.props.submit(this.state.data).catch(err =>
+        this.setState({ errors: err.response.data.errors, isLoading: false }));
     }
   }
 
@@ -42,7 +43,7 @@ class SignUpForm extends React.Component {
     if (!data.email) errors.email = "Can't be Blank";
     if (!validator.isEmail(data.email)) errors.email = "Invalid Email";
     if (!data.password) errors.password = "Can't be Blank";
-    if (!data.confirmPassword) errors.confirmPassword = "Can't ne Blank";
+    if (!data.confirmPassword) errors.confirmPassword = "Can't be Blank";
     if (!validator.equals(data.password, data.confirmPassword)) errors.confirmPassword = "Passwords do not match";
 
     return errors;
