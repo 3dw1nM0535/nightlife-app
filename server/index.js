@@ -5,6 +5,8 @@ import path from "path";
 import express from "express";
 import fs from "fs";
 import https from "https";
+import bodyParser from "body-parser";
+import mongoose from "mongoose";
 
 ///////////////////////////////////
 //Webpack HRM & Compiler modules //
@@ -17,7 +19,17 @@ import config from "../webpack.config";
 
 import privateEnv from "../config/private_keys";
 
+//////////////////
+//Route modules //
+//////////////////
+import bar from "./routes/bar/bar";
+
 config.plugins.push(new webpack.HotModuleReplacementPlugin());
+
+////////////////////////
+//Connect to database //
+////////////////////////
+mongoose.connect(privateEnv.MONGO_URI);
 
 //////////////////////////////////////////////
 //Certificate options for HTTPS development //
@@ -36,6 +48,11 @@ const app = express();
 //Static file middleware //
 ///////////////////////////
 app.use(express.static(path.resolve(__dirname, "public")));
+
+////////////////////////
+//Parse req-body data //
+////////////////////////
+app.use(bodyParser.json());
 
 ////////////////
 //Config PORT //
@@ -68,6 +85,11 @@ app.use(webpackDevMiddleware(compiler, {
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "public/index.html"));
 });
+
+/////////////////
+//Mount routes //
+/////////////////
+app.use("/api/bars", bar);
 
 ////////////////////////////
 //Init server onver HTTPS //
