@@ -16,7 +16,7 @@ export const signup = data => dispatch =>
 //User login action handler //
 //////////////////////////////
 export const login = data => dispatch =>
-  axios.post("/api/user/login", { data }).then(res => res.data.user)
+  axios.post("/api/user", { data }).then(res => res.data.user)
     .then((user) => {
       localStorage.token = user.token;
       dispatch(userLoggedIn(user));
