@@ -24,13 +24,13 @@ class TopNavigation extends React.Component {
     );
 
     const text = (
-      <span>Signed in as <strong>{user.fullname}</strong></span>
+      <span>Signed in as <strong>{user.email}</strong></span>
     );
 
     return (
       <Menu secondary>
+        <Menu.Item as={Link} to="/dashboard" active={activeItem === "Home"} name="Home" onClick={this.handleItemClick} />
         <Menu.Menu position="right">
-          <Menu.Item as={Link} to="/dashboard" active={activeItem === "Home"} name="Home" onClick={this.handleItemClick} />
           <Dropdown trigger={trigger} className="link item" pointing="top right" icon={null}>
             <Dropdown.Menu>
               <Dropdown.Item text={text} disabled />
@@ -51,7 +51,7 @@ function mapStateToProps(state) {
 
 TopNavigation.propTypes = {
   user: PropTypes.shape({
-    fullname: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
   }).isRequired,
   logout: PropTypes.func.isRequired,
 };
