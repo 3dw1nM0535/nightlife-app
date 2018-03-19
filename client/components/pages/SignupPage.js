@@ -1,8 +1,11 @@
 import React from "react";
 import { Grid, Header } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import SignupForm from "../forms/SignUpForm";
+import { signup } from "../../actions/authUser";
 
 class SignupPage extends React.Component {
   constructor(props) {
@@ -10,7 +13,7 @@ class SignupPage extends React.Component {
     this.state = {};
   }
 
-  submit = data => console.log(data);
+  submit = data => this.props.signup(data).then(() => this.props.history.push("/"));
   render() {
     return (
       <Grid padded centered stackable>
@@ -25,4 +28,11 @@ class SignupPage extends React.Component {
   }
 }
 
-export default SignupPage;
+SignupPage.propTypes = {
+  signup: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
+
+export default connect(null, { signup })(SignupPage);
