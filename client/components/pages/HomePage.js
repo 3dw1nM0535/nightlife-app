@@ -14,9 +14,20 @@ class HomePage extends React.Component {
     };
   }
 
+  componentDidMount = () => {
+    if (localStorage.location) {
+      console.log(this.props.isAuthenticated);
+    }
+  }
+
+  onClick = () => this.props.history.push("/login");
+
+  indicateGoing = item => console.log(item);
+
   submit = data => this.props.findBars(data).then(bars => this.setState({ businesses: bars }));
   render() {
     const { businesses } = this.state;
+    const { isAuthenticated } = this.props;
 
     return (
       <Grid textAlign="center" columns={2} stackable container>
@@ -42,15 +53,15 @@ class HomePage extends React.Component {
           <Grid.Column>
             <Item.Group relaxed>
             { !businesses.businesses ? null : (
-              businesses.businesses.map((item, id) => (
-                <Item key={id}>
+              businesses.businesses.map(item => (
+                <Item key={item.id}>
                   <Item.Image src={item.image_url} size="small" />
 
                   <Item.Content verticalAlign="middle">
                     <Item.Header>{item.name}</Item.Header>
                     <Item.Description>{item.id}</Item.Description>
                       <Item.Extra>
-                        <Button color="green" floated="right">Going?</Button>
+                        <Button onClick={!isAuthenticated ? this.onClick : this.indicateGoing} primary size="tiny" floated="right">Going?</Button>
                       </Item.Extra>
                   </Item.Content>
                 </Item>
@@ -64,8 +75,18 @@ class HomePage extends React.Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    isAuthenticated: !!state.user.token,
+  };
+}
+
 HomePage.propTypes = {
   findBars: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
-export default connect(null, { findBars })(HomePage);
+export default connect(mapStateToProps, { findBars })(HomePage);
