@@ -42,8 +42,8 @@ class HomePage extends React.Component {
           <Grid.Column>
             <Item.Group relaxed>
             { !businesses.businesses ? null : (
-              businesses.businesses.map((item, id) => (
-                <Item key={id}>
+              businesses.businesses.map(item => (
+                <Item key={item.id}>
                   <Item.Image src={item.image_url} size="small" />
 
                   <Item.Content verticalAlign="middle">
