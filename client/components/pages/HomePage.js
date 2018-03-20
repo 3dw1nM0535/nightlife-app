@@ -16,7 +16,7 @@ class HomePage extends React.Component {
 
   componentDidMount = () => {
     if (localStorage.location) {
-      console.log(this.props.isAuthenticated);
+      this.props.findBars(localStorage.location).then(bars => this.setState({ businesses: bars }));
     }
   }
 
