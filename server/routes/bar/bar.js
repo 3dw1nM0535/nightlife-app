@@ -3,6 +3,7 @@
 ///////////////////////////////////
 import express from "express";
 import axios from "axios";
+import Businesses from "../../model/bar";
 
 import privateEnv from "../../../config/private_keys";
 
@@ -14,7 +15,8 @@ router.post("/find", (req, res) => {
     headers: { Authorization: `Bearer ${privateEnv.API_KEY}` },
   })
     .then((response) => {
-      res.json({ bars: response.data });
+      const { businesses } = response.data;
+      console.log(businesses);
     });
 });
 
