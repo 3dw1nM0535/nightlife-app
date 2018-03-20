@@ -10,7 +10,6 @@ import TopNavigation from "./components/navigation/TopNavigation";
 import NavBar from "./components/navigation/NavBar";
 import LoginPage from "./components/pages/LoginPage";
 import SignupPage from "./components/pages/SignupPage";
-import DashboardPage from "./components/pages/DashboardPage";
 
 const App = ({ location, isAuthenticated }) => (
   <div className="ui container">
@@ -18,7 +17,7 @@ const App = ({ location, isAuthenticated }) => (
     <GuestRoute location={location} path="/" exact component={HomePage} />
     <GuestRoute location={location} path="/login" exact component={LoginPage} />
     <GuestRoute location={location} path="/signup" exact component={SignupPage} />
-    <UserRoute location={location} path="/dashboard" exact component={DashboardPage} />
+    <UserRoute location={location} path="/dashboard" exact component={HomePage} />
   </div>
 );
 
