@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Button } from "semantic-ui-react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import InlineError from "../messages/InlineError";
 
@@ -21,6 +22,7 @@ class SearchForm extends React.Component {
       ...this.state,
       data: { ...this.state.data, [e.target.name]: e.target.value },
     });
+    localStorage.location = e.target.value;
   }
 
   onSubmit = (e) => {
@@ -42,11 +44,12 @@ class SearchForm extends React.Component {
   }
   render() {
     const { errors, isLoading, data } = this.state;
+    const { isAuthenticated } = this.props;
     return (
       <div>
         <Form size="tiny" onSubmit={this.onSubmit}>
           <Form.Group widths="equal">
-            <Form.Input disabled={isLoading} fluid name="location" value={data.location} onChange={this.onChange} placeholder="Enter location to search" error={!!errors.location} />
+            <Form.Input disabled={isLoading} fluid name="location" value={!isAuthenticated ? data.location : localStorage.location} onChange={this.onChange} placeholder="Enter location to search" error={!!errors.location} />
             <Button disabled={isLoading} primary size="tiny">Search</Button>
           </Form.Group>
           { errors.location && <InlineError text={errors.location} /> }
@@ -58,8 +61,16 @@ class SearchForm extends React.Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    isAuthenticated: !!state.user.token,
+  };
+}
+
 SearchForm.propTypes = {
   submit: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
-export default SearchForm;
+export default connect(mapStateToProps)(SearchForm);
