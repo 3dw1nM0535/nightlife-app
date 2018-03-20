@@ -62,6 +62,9 @@ const Bar = new Schema({
   name: {
     type: String,
   },
+  image_url: {
+    type: String,
+  },
   is_closed: {
     type: Boolean,
   },
@@ -94,6 +97,9 @@ const Bar = new Schema({
 
 const Businesses = new Schema({
   businesses: [Bar],
+  location: {
+    type: String,
+  },
 });
 
 export default mongoose.model("Businesses", Businesses);
