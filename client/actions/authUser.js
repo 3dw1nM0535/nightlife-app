@@ -27,6 +27,5 @@ export const login = data => dispatch =>
 ///////////////////////////////
 export const logout = () => (dispatch) => {
   localStorage.removeItem("token");
-  localStorage.removeItem("location");
   dispatch(userLoggedOut());
 };

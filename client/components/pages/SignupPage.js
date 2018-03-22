@@ -13,7 +13,9 @@ class SignupPage extends React.Component {
     this.state = {};
   }
 
-  submit = data => this.props.signup(data).then(() => this.props.history.push("/"));
+  submit = data => this.props.signup(data)
+    .then(() => this.props.history.push("/"));
+
   render() {
     return (
       <Grid padded centered stackable>

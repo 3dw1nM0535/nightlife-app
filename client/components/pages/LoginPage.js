@@ -13,7 +13,9 @@ class LoginPage extends React.Component {
     this.state = {};
   }
 
-  submit = data => this.props.login(data).then(() => this.props.history.push("/"));
+  submit = data => this.props.login(data)
+    .then(() => this.props.history.push("/"));
+
   render() {
     return (
       <Grid centered padded stackable>

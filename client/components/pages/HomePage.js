@@ -14,9 +14,10 @@ class HomePage extends React.Component {
     };
   }
 
-  componentDidMount = () => {
-    if (localStorage.location) {
-      this.props.findBars(localStorage.location).then(bars => this.setState({ businesses: bars }));
+  componentWillMount = () => {
+    if (this.props.isAuthenticated && localStorage.location) {
+      this.props.findBars(localStorage.location)
+        .then(bars => this.setState({ businesses: bars }));
     }
   }
 
@@ -24,7 +25,9 @@ class HomePage extends React.Component {
 
   indicateGoing = item => console.log(item);
 
-  submit = data => this.props.findBars(data).then(bars => this.setState({ businesses: bars }));
+  submit = data => this.props.findBars(data)
+    .then(bars => this.setState({ businesses: bars }));
+
   render() {
     const { businesses } = this.state;
     const { isAuthenticated } = this.props;
