@@ -103,8 +103,4 @@ const server = https.createServer(certOptions, app);
 ///////////////////////////
 //Listen for connections //
 ///////////////////////////
-server.listen(port, () => {
-  console.log(`
-    Server listening on port ${privateEnv.PORT}
-  `);
-});
+server.listen(port);
