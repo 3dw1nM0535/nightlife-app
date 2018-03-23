@@ -97,9 +97,7 @@ const Bar = new Schema({
 
 const Businesses = new Schema({
   businesses: [Bar],
-  location: {
-    type: String,
-  },
+  location: String,
 });
 
 export default mongoose.model("Businesses", Businesses);
