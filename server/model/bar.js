@@ -68,6 +68,10 @@ const Bar = new Schema({
   is_closed: {
     type: Boolean,
   },
+  going_count: {
+    type: Number,
+    default: 0,
+  },
   url: {
     type: String,
   },
