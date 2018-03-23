@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const GeoCoords = new Schema({
-  latitudes: {
+  latitude: {
     type: Number,
   },
   longitude: {
