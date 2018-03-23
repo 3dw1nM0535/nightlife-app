@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { userLoggedIn, userLoggedOut } from "./actionCreators";
+import { userLoggedIn, userLoggedOut, clearStore } from "./actionCreators";
 
 ///////////////////////////////
 //User signup action handler //
@@ -27,5 +27,6 @@ export const login = data => dispatch =>
 ///////////////////////////////
 export const logout = () => (dispatch) => {
   localStorage.removeItem("token");
+  dispatch(clearStore());
   dispatch(userLoggedOut());
 };

@@ -3,5 +3,10 @@
 ////////////////////////////
 import axios from "axios";
 
-export const findBars = data => () =>
-  axios.post("/api/bars/find", { data }).then(res => res.data.bars);
+import { locateBars } from "../actions/actionCreators";
+
+export const findBars = data => dispatch =>
+  axios.post("/api/bars/find", { data }).then(res => res.data.bars)
+    .then((bars) => {
+      dispatch(locateBars(bars));
+    });
