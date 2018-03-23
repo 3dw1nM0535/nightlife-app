@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import SignupForm from "../forms/SignUpForm";
-import { signup } from "../../actions/authUser";
+import { signup } from "../../actions/user";
 
 class SignupPage extends React.Component {
   constructor(props) {

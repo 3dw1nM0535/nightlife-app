@@ -8,7 +8,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import createHistory from "history/createBrowserHistory";
 import thunk from "redux-thunk";
 
-import rootReducer from "../reducer/rootReducer";
+import rootReducer from "../reducer/index";
 
 export const history = createHistory();
 

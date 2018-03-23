@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import LoginForm from "../forms/LoginForm";
-import { login } from "../../actions/authUser";
+import { login } from "../../actions/user";
 
 class LoginPage extends React.Component {
   constructor(props) {

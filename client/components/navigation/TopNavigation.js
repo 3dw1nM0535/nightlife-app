@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import gravatarUrl from "gravatar-url";
 
-import * as actions from "../../actions/authUser";
+import * as actions from "../../actions/user";
 
 class TopNavigation extends React.Component {
   constructor(props) {
