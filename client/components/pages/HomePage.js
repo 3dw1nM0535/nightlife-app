@@ -9,9 +9,7 @@ import SearchForm from "../forms/SearchForm";
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      businesses: {},
-    };
+    this.state = {};
   }
 
   componentWillMount = () => {
@@ -19,8 +17,7 @@ class HomePage extends React.Component {
       location: localStorage.location,
     };
     if (this.props.isAuthenticated && localStorage.location) {
-      this.props.findBars(data)
-        .then(bars => this.setState({ businesses: bars }));
+      this.props.findBars(data);
     }
   }
 
@@ -28,12 +25,10 @@ class HomePage extends React.Component {
 
   indicateGoing = item => console.log(item);
 
-  submit = data => this.props.findBars(data)
-    .then(bars => this.setState({ businesses: bars }));
+  submit = data => this.props.findBars(data);
 
   render() {
-    const { businesses } = this.state;
-    const { isAuthenticated } = this.props;
+    const { isAuthenticated, bars } = this.props;
 
     return (
       <Grid textAlign="center" columns={2} stackable container>
@@ -58,8 +53,8 @@ class HomePage extends React.Component {
         <Grid.Row>
           <Grid.Column>
             <Item.Group relaxed>
-            { !businesses.businesses ? null : (
-              businesses.businesses.map(item => (
+            { !bars.businesses ? null : (
+              bars.businesses.map(item => (
                 <Item key={item.id}>
                   <Item.Image src={item.image_url} size="small" />
 
@@ -84,12 +79,19 @@ class HomePage extends React.Component {
 function mapStateToProps(state) {
   return {
     isAuthenticated: !!state.user.token,
+    bars: state.bars,
   };
 }
 
 HomePage.propTypes = {
   findBars: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
+  bars: PropTypes.shape({
+    location: PropTypes.string,
+    businesses: PropTypes.arrayOf(PropTypes.object),
+    _id: PropTypes.string,
+    _v: PropTypes.number,
+  }).isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
