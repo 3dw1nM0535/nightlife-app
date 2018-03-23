@@ -1,42 +1,62 @@
-// ES6 code transpiler
+////////////////////////
+//ES6 code transpiler //
+////////////////////////
 
 var path = require("path");
 var webpack = require("webpack");
 var autoprefixer = require("autoprefixer");
 
 module.exports = {
+  /////////////////////////
+  //Entry folder or file //
+  /////////////////////////
   mode: "development",
   devtool: "eval",
   entry: [
     "webpack-hot-middleware/client",
     path.join(__dirname, "/client/index.js"),
   ],
+  /////////////////////////////
+  //Output after transpiling //
+  /////////////////////////////
   output: {
     path: path.join(__dirname, "build"),
     filename: "bundle.js",
     publicPath: "/build/",
   },
+  ////////////////////////
+  //Plugins for webpack //
+  ////////////////////////
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
   ],
+  //////////
+  //Rules //
+  //////////
   module: {
     rules: [
       { test: /\.(woff2?|svg|jpe?g|png|gif|ico|eot|ttf)$/, loader: "url-loader?limit=10000" },
       {
-        // JS
+        ///////
+        //JS //
+        ///////
         test: /\.js$/,
         loaders: ["babel-loader?" + JSON.stringify({ cacheDirectory: true }), ],
         include: path.join(__dirname, "/client"),
       },
       {
-        // CSS
+        ////////
+        //CSS //
+        ////////
         test: /\.css$/,
         use: [
           "style-loader",
           { loader: "css-loader", options: { importLoaders: 1 } },
 
-          // Configure for CSS imports to work
+          //////////////////////////////////////
+          //Configure for CSS imports to work //
+          //////////////////////////////////////
           { loader: "postcss-loader", options: { ident: "postcss", plugins: () => [
             require("postcss-flexbugs-fixes"),
             autoprefixer({
