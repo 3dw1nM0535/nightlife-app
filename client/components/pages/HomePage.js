@@ -1,10 +1,11 @@
 import React from "react";
-import { Grid, Header, Icon, Item, Button } from "semantic-ui-react";
+import { Grid, Header, Icon } from "semantic-ui-react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import { findBars } from "../../actions/bar";
 import SearchForm from "../forms/SearchForm";
+import Content from "../cta/Item";
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -21,15 +22,10 @@ class HomePage extends React.Component {
     }
   }
 
-  onClick = () => this.props.history.push("/login");
-
-  indicateGoing = item => console.log(item);
-
   submit = data => this.props.findBars(data);
 
   render() {
-    const { isAuthenticated, bars } = this.props;
-
+    const { bars } = this.props;
     return (
       <Grid textAlign="center" columns={2} stackable container>
         <Grid.Column>
@@ -52,23 +48,7 @@ class HomePage extends React.Component {
         </Grid.Row>
         <Grid.Row>
           <Grid.Column>
-            <Item.Group relaxed>
-            { !bars.businesses ? null : (
-              bars.businesses.map(item => (
-                <Item key={item.id}>
-                  <Item.Image src={item.image_url} size="small" />
-
-                  <Item.Content verticalAlign="middle">
-                    <Item.Header>{item.name}</Item.Header>
-                    <Item.Description>{item.id}</Item.Description>
-                      <Item.Extra>
-                        <Button onClick={!isAuthenticated ? this.onClick : this.indicateGoing} primary size="tiny" floated="right">Going?</Button>
-                      </Item.Extra>
-                  </Item.Content>
-                </Item>
-              ))
-            )}
-          </Item.Group>
+            <Content bars={bars} />
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -87,13 +67,9 @@ HomePage.propTypes = {
   findBars: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   bars: PropTypes.shape({
-    location: PropTypes.string,
-    businesses: PropTypes.arrayOf(PropTypes.object),
     _id: PropTypes.string,
     _v: PropTypes.number,
-  }).isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
+    businesses: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
 };
 
