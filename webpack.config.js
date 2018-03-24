@@ -10,10 +10,8 @@ module.exports = {
   /////////////////////////
   //Entry folder or file //
   /////////////////////////
-  mode: "development",
-  devtool: "eval",
+  mode: "production",
   entry: [
-    "webpack-hot-middleware/client",
     path.join(__dirname, "/client/index.js"),
   ],
   /////////////////////////////
@@ -29,7 +27,6 @@ module.exports = {
   ////////////////////////
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
   ],
   //////////
   //Rules //
