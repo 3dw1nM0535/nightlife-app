@@ -84,7 +84,7 @@ app.use(webpackDevMiddleware(compiler, {
 //Any route handler //
 //////////////////////
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "public/index.html"));
+  res.sendFile(path.join(__dirname, "src", "public/index.html"));
 });
 
 /////////////////
