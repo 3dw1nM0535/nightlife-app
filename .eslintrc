@@ -11,6 +11,7 @@
         }
     },
   "rules": {
+    "no-plusplus": "off",
     "spaced-comment": "off",
 		"semi": ["error", "always"],
 		"no-tabs": "off",
