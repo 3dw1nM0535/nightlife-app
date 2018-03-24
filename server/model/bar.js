@@ -72,6 +72,7 @@ const Bar = new Schema({
     type: Number,
     default: 0,
   },
+  attendees: [String],
   url: {
     type: String,
   },
