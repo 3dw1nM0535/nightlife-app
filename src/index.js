@@ -125,7 +125,7 @@ app.use((0, _webpackDevMiddleware2.default)(compiler, {
 //Any route handler //
 //////////////////////
 app.get("*", function (req, res) {
-  res.sendFile(_path2.default.resolve(__dirname, "public/index.html"));
+  res.sendFile(_path2.default.join(__dirname, "src", "public/index.html"));
 });
 
 /////////////////
