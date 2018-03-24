@@ -16,5 +16,8 @@ export const findBars = data => dispatch =>
 /////////////////////////////////
 //Update bar to indicate going //
 /////////////////////////////////
-export const indicateGoing = _id => dispatch =>
-  axios.post("/api/bar/update", { _id }).then(res => res.data.bars);
+export const indicateGoing = data => dispatch =>
+  axios.post("/api/bars/update", { data }).then(res => res.data.result)
+    .then((result) => {
+      dispatch(locateBars(result));
+    });

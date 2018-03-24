@@ -13,10 +13,12 @@ class Content extends React.Component {
 
   handleClick = (id) => {
     const barID = id;
+    const businessID = this.props.itemID;
     const userID = this.props._id;
     const data = {
-      barID,
+      businessID,
       userID,
+      barID,
     };
     this.props.indicateGoing(data);
   }
@@ -49,6 +51,7 @@ function mapStateToProps(state) {
   return {
     isAuthenticated: !!state.user.token,
     _id: state.user._id,
+    itemID: state.bars._id,
   };
 }
 
@@ -61,6 +64,7 @@ Content.propTypes = {
   }).isRequired,
   indicateGoing: PropTypes.func.isRequired,
   _id: PropTypes.string,
+  itemID: PropTypes.string,
   onClick: PropTypes.func.isRequired,
 };
 
