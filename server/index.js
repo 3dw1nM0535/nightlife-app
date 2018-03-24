@@ -3,8 +3,7 @@
 ///////////////////
 import path from "path";
 import express from "express";
-import fs from "fs";
-import https from "https";
+import http from "http";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 
@@ -36,10 +35,10 @@ mongoose.connect(privateEnv.MONGO_URI);
 //////////////////////////////////////////////
 //Certificate options for HTTPS development //
 //////////////////////////////////////////////
-const certOptions = {
+/*const certOptions = {
   pfx: fs.readFileSync(path.resolve("config/localhost.pfx")),
   passphrase: privateEnv.PASSPHRASE,
-};
+};*/
 
 ////////////////////////
 //Init express module //
@@ -59,7 +58,7 @@ app.use(bodyParser.json());
 ////////////////
 //Config PORT //
 ////////////////
-const port = privateEnv.PORT;
+const port = process.env.PORT;
 
 ///////////////////////////
 //Webpack compiler setup //
@@ -98,7 +97,7 @@ app.use("/api/auth", auth);
 ////////////////////////////
 //Init server onver HTTPS //
 ////////////////////////////
-const server = https.createServer(certOptions, app);
+const server = http.createServer(app);
 
 ///////////////////////////
 //Listen for connections //
