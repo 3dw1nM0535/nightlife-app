@@ -22,6 +22,8 @@ class HomePage extends React.Component {
     }
   }
 
+  onClick = () => this.props.history.push("/login");
+
   submit = data => this.props.findBars(data);
 
   render() {
@@ -48,7 +50,7 @@ class HomePage extends React.Component {
         </Grid.Row>
         <Grid.Row>
           <Grid.Column>
-            <Content bars={bars} />
+            <Content bars={bars} onClick={this.onClick} />
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -70,6 +72,9 @@ HomePage.propTypes = {
     _id: PropTypes.string,
     _v: PropTypes.number,
     businesses: PropTypes.arrayOf(PropTypes.object),
+  }).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
   }).isRequired,
 };
 

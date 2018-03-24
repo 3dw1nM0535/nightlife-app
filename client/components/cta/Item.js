@@ -12,8 +12,13 @@ class Content extends React.Component {
   }
 
   handleClick = (id) => {
-    const _id = id;
-    this.props.indicateGoing(_id);
+    const barID = id;
+    const userID = this.props._id;
+    const data = {
+      barID,
+      userID,
+    };
+    this.props.indicateGoing(data);
   }
 
   render() {
@@ -29,7 +34,7 @@ class Content extends React.Component {
               <Item.Header>{item.name}</Item.Header>
               <Item.Description>{item.id}</Item.Description>
               <Item.Extra>
-                <Button onClick={this.handleClick.bind(this, item._id)} size="tiny" color="blue">Going?</Button>
+                <Button onClick={!isAuthenticated ? this.props.onClick : this.handleClick.bind(this, item._id)} size="tiny" color="blue">Going?</Button>
                 <Label circular color="grey">{parseInt(item.going_count, 10)}</Label>
               </Item.Extra>
             </Item.Content>
@@ -43,6 +48,7 @@ class Content extends React.Component {
 function mapStateToProps(state) {
   return {
     isAuthenticated: !!state.user.token,
+    _id: state.user._id,
   };
 }
 
@@ -54,6 +60,8 @@ Content.propTypes = {
     businesses: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
   indicateGoing: PropTypes.func.isRequired,
+  _id: PropTypes.string,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, { indicateGoing })(Content);
