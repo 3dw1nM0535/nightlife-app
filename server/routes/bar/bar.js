@@ -5,7 +5,7 @@ import express from "express";
 import axios from "axios";
 import Businesses from "../../model/bar";
 
-import privateEnv from "../../../config/private_keys";
+import privateEnv from "../../config/private_keys";
 
 const router = express.Router();
 

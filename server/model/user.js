@@ -6,7 +6,7 @@ import uniqueValidator from "mongoose-unique-validator";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-import privateEnv from "../../config/private_keys";
+import privateEnv from "../config/private_keys";
 
 const Schema = mongoose.Schema;
 

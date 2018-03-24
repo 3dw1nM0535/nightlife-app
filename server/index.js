@@ -16,14 +16,14 @@ import webpackHotMiddleware from "webpack-hot-middleware";
 import webpackDevMiddleware from "webpack-dev-middleware";
 import config from "../webpack.config";
 
-import privateEnv from "../config/private_keys";
-
 //////////////////
 //Route modules //
 //////////////////
 import bar from "./routes/bar/bar";
 import user from "./routes/user/user";
 import auth from "./routes/user/auth";
+
+import privateEnv from "./config/private_keys";
 
 config.plugins.push(new webpack.HotModuleReplacementPlugin());
 

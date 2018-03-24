@@ -4,10 +4,13 @@
   "description": "Nightlife coordination App",
   "main": "server/index.js",
   "scripts": {
-    "start": "nodemon --watch server --exec babel-node server/index.js",
     "build": "npm run clean && npm run build:webpack",
     "build:webpack": "webpack --config webpack.config.js",
-    "clean": "rimraf build",
+    "clean": "rimraf build/",
+    "clean-server": "rm -rf src && mkdir src",
+    "build-server": "babel -d ./src ./server -s",
+    "server": "npm run clean-server && npm run build-server",
+    "start": "node ./src/index.js",
     "lint": "eslint client server config"
   },
   "repository": {
@@ -56,6 +59,8 @@
   "dependencies": {
     "autoprefixer": "^8.1.0",
     "axios": "^0.18.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
     "dotenv": "^5.0.1",
