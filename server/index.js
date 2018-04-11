@@ -11,10 +11,10 @@ import mongoose from "mongoose";
 //Webpack HRM & Compiler modules //
 ///////////////////////////////////
 
-import webpack from "webpack";
-import webpackHotMiddleware from "webpack-hot-middleware";
-import webpackDevMiddleware from "webpack-dev-middleware";
-import config from "../webpack.config";
+// import webpack from "webpack";
+// import webpackHotMiddleware from "webpack-hot-middleware";
+// import webpackDevMiddleware from "webpack-dev-middleware";
+// import config from "../webpack.config";
 
 //////////////////
 //Route modules //
@@ -25,7 +25,7 @@ import auth from "./routes/user/auth";
 
 import privateEnv from "./config/private_keys";
 
-config.plugins.push(new webpack.HotModuleReplacementPlugin());
+// config.plugins.push(new webpack.HotModuleReplacementPlugin());
 
 ////////////////////////
 //Connect to database //
@@ -48,7 +48,7 @@ const app = express();
 ///////////////////////////
 //Static file middleware //
 ///////////////////////////
-app.use(express.static(path.resolve(__dirname, "public")));
+app.use(express.static(path.resolve("build")));
 
 ////////////////////////
 //Parse req-body data //
@@ -63,28 +63,31 @@ const port = process.env.PORT;
 ///////////////////////////
 //Webpack compiler setup //
 ///////////////////////////
-const compiler = webpack(config);
+// const compiler = webpack(config);
 
 ///////////////////////////
 //Webpack HRM Middleware //
 ///////////////////////////
-app.use(webpackHotMiddleware(compiler));
+// app.use(webpackHotMiddleware(compiler));
 
 ///////////////////////////
 //Webpack dev Middleware //
 ///////////////////////////
+
+/*
 app.use(webpackDevMiddleware(compiler, {
   noInfo: true,
   hot: true,
   historyApiFallback: true,
   publicPath: config.output.publicPath,
 }));
+*/
 
 //////////////////////
 //Any route handler //
 //////////////////////
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "src", "public/index.html"));
+  res.sendFile(path.resolve("./build", "index.html"));
 });
 
 /////////////////
@@ -95,7 +98,7 @@ app.use("/api/user", user);
 app.use("/api/auth", auth);
 
 ////////////////////////////
-//Init server onver HTTPS //
+//Init server over HTTPS //
 ////////////////////////////
 const server = http.createServer(app);
 

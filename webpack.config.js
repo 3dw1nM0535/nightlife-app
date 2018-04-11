@@ -5,12 +5,15 @@
 var path = require("path");
 var webpack = require("webpack");
 var autoprefixer = require("autoprefixer");
+var UglifyJSPlugin = require("uglifyjs-webpack-plugin");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   /////////////////////////
   //Entry folder or file //
   /////////////////////////
   mode: "production",
+  devtool: "source-map",
   entry: [
     path.join(__dirname, "/client/index.js"),
   ],
@@ -20,13 +23,21 @@ module.exports = {
   output: {
     path: path.join(__dirname, "build"),
     filename: "bundle.js",
-    publicPath: "/build/",
+    publicPath: "/",
   },
   ////////////////////////
   //Plugins for webpack //
   ////////////////////////
   plugins: [
-    new webpack.optimize.OccurrenceOrderPlugin(),
+    new HtmlWebpackPlugin({
+      template: __dirname + "/client/index.html"
+    }),
+    new UglifyJSPlugin({
+      sourceMap: true,
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    }),
   ],
   //////////
   //Rules //

@@ -20,22 +20,6 @@ var _mongoose = require("mongoose");
 
 var _mongoose2 = _interopRequireDefault(_mongoose);
 
-var _webpack = require("webpack");
-
-var _webpack2 = _interopRequireDefault(_webpack);
-
-var _webpackHotMiddleware = require("webpack-hot-middleware");
-
-var _webpackHotMiddleware2 = _interopRequireDefault(_webpackHotMiddleware);
-
-var _webpackDevMiddleware = require("webpack-dev-middleware");
-
-var _webpackDevMiddleware2 = _interopRequireDefault(_webpackDevMiddleware);
-
-var _webpack3 = require("../webpack.config");
-
-var _webpack4 = _interopRequireDefault(_webpack3);
-
 var _bar = require("./routes/bar/bar");
 
 var _bar2 = _interopRequireDefault(_bar);
@@ -54,23 +38,25 @@ var _private_keys2 = _interopRequireDefault(_private_keys);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//////////////////
-//Route modules //
-//////////////////
+// config.plugins.push(new webpack.HotModuleReplacementPlugin());
+
+////////////////////////
+//Connect to database //
+////////////////////////
 
 
 ///////////////////////////////////
 //Webpack HRM & Compiler modules //
 ///////////////////////////////////
 
-_webpack4.default.plugins.push(new _webpack2.default.HotModuleReplacementPlugin());
+// import webpack from "webpack";
+// import webpackHotMiddleware from "webpack-hot-middleware";
+// import webpackDevMiddleware from "webpack-dev-middleware";
+// import config from "../webpack.config";
 
-////////////////////////
-//Connect to database //
-////////////////////////
-///////////////////
-//Server modules //
-///////////////////
+//////////////////
+//Route modules //
+//////////////////
 _mongoose2.default.connect(_private_keys2.default.MONGO_URI);
 
 //////////////////////////////////////////////
@@ -84,12 +70,15 @@ _mongoose2.default.connect(_private_keys2.default.MONGO_URI);
 ////////////////////////
 //Init express module //
 ////////////////////////
+///////////////////
+//Server modules //
+///////////////////
 var app = (0, _express2.default)();
 
 ///////////////////////////
 //Static file middleware //
 ///////////////////////////
-app.use(_express2.default.static(_path2.default.resolve(__dirname, "public")));
+app.use(_express2.default.static(_path2.default.resolve("build")));
 
 ////////////////////////
 //Parse req-body data //
@@ -104,28 +93,31 @@ var port = process.env.PORT;
 ///////////////////////////
 //Webpack compiler setup //
 ///////////////////////////
-var compiler = (0, _webpack2.default)(_webpack4.default);
+// const compiler = webpack(config);
 
 ///////////////////////////
 //Webpack HRM Middleware //
 ///////////////////////////
-app.use((0, _webpackHotMiddleware2.default)(compiler));
+// app.use(webpackHotMiddleware(compiler));
 
 ///////////////////////////
 //Webpack dev Middleware //
 ///////////////////////////
-app.use((0, _webpackDevMiddleware2.default)(compiler, {
+
+/*
+app.use(webpackDevMiddleware(compiler, {
   noInfo: true,
   hot: true,
   historyApiFallback: true,
-  publicPath: _webpack4.default.output.publicPath
+  publicPath: config.output.publicPath,
 }));
+*/
 
 //////////////////////
 //Any route handler //
 //////////////////////
 app.get("*", function (req, res) {
-  res.sendFile(_path2.default.join(__dirname, "src", "public/index.html"));
+  res.sendFile(_path2.default.resolve("./build", "index.html"));
 });
 
 /////////////////
@@ -136,7 +128,7 @@ app.use("/api/user", _user2.default);
 app.use("/api/auth", _auth2.default);
 
 ////////////////////////////
-//Init server onver HTTPS //
+//Init server over HTTPS //
 ////////////////////////////
 var server = _http2.default.createServer(app);
 
